@@ -3,14 +3,14 @@ from paste.translogger import TransLogger
 from app import create_app
 from pyspark import SparkContext, SparkConf
 
-def init_spark_context():
-    # load spark context
-    conf = SparkConf().setAppName("movie_recommendation-server").set("spark.driver.allowMultipleContexts", "true")
-    # IMPORTANT: pass aditional Python modules to each worker
-    sc = SparkContext(conf=conf, pyFiles=['engine.py', 'app.py'])
- 
-    return sc
- 
+#def init_spark_context():
+#    # load spark context
+#    conf = SparkConf().setAppName("movie_recommendation-server").set("spark.driver.allowMultipleContexts", "true")
+#    # IMPORTANT: pass aditional Python modules to each worker
+#    sc = SparkContext(conf=conf, pyFiles=['engine.py', 'app.py'])
+#
+#    return sc
+
  
 def run_server(app):
  
@@ -35,9 +35,9 @@ def run_server(app):
  
 if __name__ == "__main__":
     # Init spark context and load libraries
-    sc = init_spark_context()
+    #sc = init_spark_context()
     dataset_path = os.path.join('datasets', 'ml-latest-small')
-    app = create_app(sc, dataset_path)
+    app = create_app(dataset_path)
  
     # start web server
     run_server(app)
